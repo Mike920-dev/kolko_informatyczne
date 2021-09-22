@@ -2,7 +2,7 @@
 
 <h1><a name=menu></a>Menu zadań(treść):</h1>
 
-[Zadanie 01](#zadanie-tresc)
+[Treść zadania](#zadanie-tresc)
 
 <h2><a name=zadanie-tresc></a>Zadanie 01</h2>
 

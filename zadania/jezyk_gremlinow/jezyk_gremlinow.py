@@ -25,8 +25,8 @@ def z_dzies_na_grem(liczba):
     gremlinska_liczba = ""
     liczba_zer = 0
     nowa_liczba = ""
+    stara_max_ilosc = []
     max_ilosc = []
-
     if "0" not in liczba:
         return liczba
 
@@ -36,43 +36,50 @@ def z_dzies_na_grem(liczba):
         else:
             nowa_liczba += liczba[i]
             liczba_zer = 0
-        max_ilosc.append(str(liczba_zer))
+        stara_max_ilosc.append(str(liczba_zer))
 
      
-    max_ilosc = "".join(max_ilosc).split("0")
+    stara_max_ilosc = "".join(stara_max_ilosc).split("0")
     
     
-    if '' in max_ilosc:
-        max_ilosc.remove('')
+    for element in stara_max_ilosc:
+        if element not in max_ilosc:
+            max_ilosc.append(element)
+
+    for element in max_ilosc:
+        if element == '':
+            max_ilosc.remove('')
 
     for i in range(len(max_ilosc)):
         max_ilosc[i] = max(max_ilosc[i])
-
+    
     nowa_liczba = list(nowa_liczba)
     for i in range(len(max_ilosc)):
         nowa_liczba.insert(i, f":{max_ilosc[i]}:")
 
-    zera = nowa_liczba[:len(nowa_liczba)//2]
-    liczby = nowa_liczba[len(nowa_liczba)//2:]
+    return nowa_liczba
 
-    nowa_liczba_dict = {}
-    for i in range(2*len(nowa_liczba)):
-        if i == len(liczby):
-            break
-        else:
-            nowa_liczba_dict.update({liczby[i]: zera[i]})
+    # zera = nowa_liczba[:len(nowa_liczba)//2]
+    # liczby = nowa_liczba[len(nowa_liczba)//2:]
+
+    # nowa_liczba_dict = {}
+    # for i in range(2*len(nowa_liczba)):
+    #     if i == len(liczby):
+    #         break
+    #     else:
+    #         nowa_liczba_dict.update({liczby[i]: zera[i]})
             
-    for num in nowa_liczba_dict:
-        if int(nowa_liczba_dict[num].strip(":")) < 3:
-            gremlinska_liczba += num + "0" * int(nowa_liczba_dict[num].strip(":"))
-        else:
-            gremlinska_liczba += num + nowa_liczba_dict[num]
+    # for num in nowa_liczba_dict:
+    #     if int(nowa_liczba_dict[num].strip(":")) < 3:
+    #         gremlinska_liczba += num + "0" * int(nowa_liczba_dict[num].strip(":"))
+    #     else:
+    #         gremlinska_liczba += num + nowa_liczba_dict[num]
     
-    gremlinska_liczba = list(gremlinska_liczba)
-    if gremlinska_liczba[-1] == ":":
-        gremlinska_liczba.pop(-1)
+    # gremlinska_liczba = list(gremlinska_liczba)
+    # if gremlinska_liczba[-1] == ":":
+    #     gremlinska_liczba.pop(-1)
 
-    return "".join(gremlinska_liczba)
+    # return "".join(gremlinska_liczba)
 
 print(z_dzies_na_grem("123"))
 print(z_dzies_na_grem("10030000"))
@@ -86,7 +93,6 @@ print(z_dzies_na_grem("1000500500500505000023"))
 print(z_dzies_na_grem("123000403000402"))
 print(z_dzies_na_grem("100200030405000600"))
 
-
 # n = int(input())
 
 # liczby = []
@@ -99,8 +105,8 @@ print(z_dzies_na_grem("100200030405000600"))
 # for i in range(1, len(liczby), 2):
 #     pary.append([int(z_grem_na_dzies(liczby[i - 1])), int(z_grem_na_dzies(liczby[i]))])
 
-
+# print()
 # for para in pary:
 #     suma = sum(para)
 
-#     print(str(suma))
+#     print(z_dzies_na_grem(str(suma)))
